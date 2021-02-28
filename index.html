@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equlv="X-UA-Compatible" content="ie=edge">
+    <title>ARC - Random Number Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="Images/Icon/Logo.png" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript" src="example.js"></script>
+</head>
+<body>
+<header>
+	<div class="header-container">
+		<nav>
+			<a href="https://arc20.github.io/mpi/index.html" class="nav-link nav-link-logo"></a>
+		</nav>
+	</div>
+</header>
+
+<!-- Main Contain -->
+<main class="main">
+	<section class="section">
+		<div class="contain">
+			<div class="contain-box">
+				<div class="title">
+					<h1>Background Color</h1>
+					<h3>Enter or Select a Color You Like</h3>
+				</div>
+				<div class="item">
+					<div class="item-1">
+						<input type="text" placeholder="Color Code (HEX)" id="hex" maxlength="7">
+		                <div class="prev"></div>
+					</div>
+					<div class="item-2">
+						<div class="container">
+							<button class="butt red" id="b2" onclick="red()">Red</button>
+			                <button class="butt blue" id="b2" onclick="blue()">Blue</button>
+			                <button class="butt yellow" id="b2" onclick="yellow()">Yellow</button>
+			            </div>
+		                <button class="apply">Apply</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="contain">
+			<div class="contain-box">
+				<div class="title">
+					<h1>Random Number Generator</h1>
+					<h3>Generate a Random Number between</h3>
+				</div>
+				<div class="item">
+					<div class="item-3">
+						<input type="text" id="lownumber" value="1" maxlength="4"/>
+				        and
+				        <input type="text" id="highnumber" value="100" maxlength="4"/>
+					</div>
+					<button id="getit">Generate</button>
+					<div id="randomnumber"></div>
+				</div>
+			</div>
+		</div>
+		<div class="contain">
+			<div class="contain-box">
+				<div class="title">
+					<h1>ScreenShot Generator</h1>
+					<h3>Generate an Image for the Generated Number</h3>
+				</div>
+				<button onclick="screenshot()" class="btn">ScreenShot</button>
+			</div>
+		</div>
+	</section>
+</main>
+
+<!-- Go to Top Button -->
+<button onclick="scrollToTop();return false" id="myBtn" title="Slide to top"></button>
+<script src="Gototop.js" type="text/javascript">
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+	<div class="ac-gf-footer">
+		<section class="ac-gf-note">
+			<ul>
+				<li class="BC"><a href="https://arc20.github.io/mpi/index.html">Home</a><i class="arrow"></i>Tools</li>
+				<li>Any question: Find advisor or committee. Or email <a target="blank_" href="mailto:arclub20@gmail.com">arclub20@gmail.com</a>.</li>
+			</ul>
+		</section>
+		<section class="legal">
+			<div class="ac-gf-footer-legal">
+				<div class="ac-gf-footer-legal-copyright">
+					Copyright © 2021 Accounting Recreational Club. All rights reserved.
+				</div>
+			</div>
+		</section>
+	</div>
+</footer>
+</body>
+<script type="text/javascript">
+//to have a preview of color
+$('#hex').keyup(function() {
+    $('.prev').css("background", $('#hex').val());
+});
+
+//to apply color
+$('.apply').click(function() {
+    $('body').css("background", $('#hex').val());
+})
+</script>
+<script type="text/javascript">
+//![CDATA[
+function red() {
+    document.body.style.backgroundColor = "#8B4B4C";
+}
+
+function blue() {
+    document.body.style.backgroundColor = "#1E2F5A";
+}
+
+function yellow() {
+    document.body.style.backgroundColor = "#D4AF37";
+}
+//]]>
+</script>
+<script type="text/javascript" src="html2canvas.min.js"></script>
+<script type="text/javascript" src="html2canvas.js"></script>
+<script type="text/javascript">
+	function screenshot(){
+		var htmlDom = document.getElementById('randomnumber');
+		var scale = 1;
+		var width = htmlDom.offsetWidth;
+	    var height = htmlDom.offsetHeight;
+
+		html2canvas(htmlDom, {
+			dpi: window.devicePixelRatio*1,
+	        scale:scale,
+			width:width,
+	        heigth:height,
+	        logging: false,
+			useCORS: true,
+			sscrollY: 0, 
+		    scrollX: 0,
+		}).then(canvas => {
+			var img = document.createElement('a');
+			img.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+			img.download = 'ScreenShot.jpg';
+			img.click();
+		});
+	}
+</script>
+</html>
